@@ -5,29 +5,29 @@ on:
 
   jobs:
 
-    test:
-      runs-on: ubuntu-latest
+  test:
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: Checkout the source code
-          uses: actions/checkout@v3
+    steps:
+      - name: Checkout the source code
+        uses: actions/checkout@v3
 
-        - name: Setup Python
-          uses: actions/setup-python@v4
-          with:
-            python-version: '3.12'
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
 
-        - name: Install dependencies
-          run: |
-            python -m pip install --upgrade pip
-            pip install -r requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-        - name: Ensure the browsers are installed
-          run: python -m playwright install chromium --with-deps
+      - name: Ensure the browsers are installed
+        run: python -m playwright install chromium --with-deps
 
-        - name: Run the tests
-          run: |
-            cd cubeit
-            python -m http.server 8080 &
-            cd ..
-            pytest -v
+      - name: Run the tests
+        run: |
+          cd cubeit
+          python -m http.server 8080 &
+          cd ..
+          pytest -v
